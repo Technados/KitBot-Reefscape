@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-package frc.robot.subsystems;
-
-import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import com.revrobotics.spark.SparkMax;
-
-public class DriveSubsystem extends SubsystemBase {
-
-    
-}
-=======
 // Copyright (c) FIRST and other WPILib contributors.
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
@@ -93,4 +81,3 @@ public class DriveSubsystem extends SubsystemBase {
         () -> drive.arcadeDrive(xSpeed.getAsDouble(), zRotation.getAsDouble()), driveSubsystem);
   }
 }
->>>>>>> 45d0dd8c6a167a97de6206e34746a00057e00f08
