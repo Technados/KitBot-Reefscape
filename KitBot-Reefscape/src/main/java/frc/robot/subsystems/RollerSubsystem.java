@@ -17,12 +17,12 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 
 /** Class to run the rollers over CAN */
-public class CANRollerSubsystem extends SubsystemBase {
+public class RollerSubsystem extends SubsystemBase {
   private final SparkMax rollerMotor;
 
   public RollerSubsystem() {
     // Set up the roller motor as a brushed motor
-    rollerMotor = new SparkMax(RollerConstants.ROLLER_MOTOR_ID, MotorType.kBrushed);
+    rollerMotor = new SparkMax(RollerConstants.kRollerMotorCANID, MotorType.kBrusheless);
 
     // Set can timeout. Because this project only sets parameters once on
     // construction, the timeout can be long without blocking robot operation. Code
@@ -34,8 +34,8 @@ public class CANRollerSubsystem extends SubsystemBase {
     // voltage dips. The current limit helps prevent breaker trips or burning out
     // the motor in the event the roller stalls.
     SparkMaxConfig rollerConfig = new SparkMaxConfig();
-    rollerConfig.voltageCompensation(RollerConstants.ROLLER_MOTOR_VOLTAGE_COMP);
-    rollerConfig.smartCurrentLimit(RollerConstants.ROLLER_MOTOR_CURRENT_LIMIT);
+    rollerConfig.voltageCompensation(12);
+    rollerConfig.smartCurrentLimit(.3);
     rollerMotor.configure(rollerConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
   }
 

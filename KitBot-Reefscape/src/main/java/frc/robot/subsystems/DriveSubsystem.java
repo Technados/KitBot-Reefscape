@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.DriveConstants;
 
-public class CANDriveSubsystem extends SubsystemBase {
+public class DriveSubsystem extends SubsystemBase {
   private final SparkMax leftLeader;
   private final SparkMax leftFollower;
   private final SparkMax rightLeader;
@@ -26,12 +26,12 @@ public class CANDriveSubsystem extends SubsystemBase {
 
   private final DifferentialDrive drive;
 
-  public CANDriveSubsystem() {
+  public DriveSubsystem() {
     // create brushed motors for drive
-    leftLeader = new SparkMax(DriveConstants.LEFT_LEADER_ID, MotorType.kBrushed);
-    leftFollower = new SparkMax(DriveConstants.LEFT_FOLLOWER_ID, MotorType.kBrushed);
-    rightLeader = new SparkMax(DriveConstants.RIGHT_LEADER_ID, MotorType.kBrushed);
-    rightFollower = new SparkMax(DriveConstants.RIGHT_FOLLOWER_ID, MotorType.kBrushed);
+    leftLeader = new SparkMax(DriveConstants.kLeftLeaderCANId, MotorType.kBrusheless);
+    leftFollower = new SparkMax(DriveConstants.kLeftFollowerCANId, MotorType.kBrusheless);
+    rightLeader = new SparkMax(DriveConstants.kRightLeaderCANId, MotorType.kBrusheless);
+    rightFollower = new SparkMax(DriveConstants.kRightFollowerCANId, MotorType.kBrusheless);
 
     // set up differential drive class
     drive = new DifferentialDrive(leftLeader, rightLeader);
@@ -51,7 +51,7 @@ public class CANDriveSubsystem extends SubsystemBase {
     // breakers.
     SparkMaxConfig config = new SparkMaxConfig();
     config.voltageCompensation(12);
-    config.smartCurrentLimit(DriveConstants.DRIVE_MOTOR_CURRENT_LIMIT);
+    config.smartCurrentLimit(.3);
 
     // Set configuration to follow leader and then apply it to corresponding
     // follower. Resetting in case a new controller is swapped
